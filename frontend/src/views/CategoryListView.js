@@ -1,30 +1,52 @@
 import gql from "graphql-tag";
-import React from "react";
+import React, { Component } from "react";
 import { graphql } from "react-apollo";
+import { Row, Table } from "react-bootstrap";
 
 const QUERY_ALL_CATEGORIES = gql`
   query {
     allCategories {
       id
       name
+      ingredients {
+        id
+        name
+      }
     }
   }
 `;
 
-class CategoryListView extends React.Component {
+class CategoryListView extends Component {
   render() {
     let { data } = this.props;
     if (data.loading || !data.allCategories) {
       return <div>Loading...</div>;
     }
     return (
-      <div>
-        {data.allCategories.map((item) => (
-          <p key={item.id}>
-            Category {item.id}: {item.name}
-          </p>
-        ))}
-      </div>
+      <Row>
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Ingredients</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data.allCategories.map((item) => (
+              <tr key={item.id}>
+                <td>{item.id}</td>
+                <td>{item.name}</td>
+                <td>
+                  {item.ingredients.map((ingredient, index) => (
+                    <span>{(index ? ", " : "") + ingredient.name}</span>
+                  ))}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      </Row>
     );
   }
 }

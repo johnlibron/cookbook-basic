@@ -1,6 +1,7 @@
 import { ApolloProvider } from "@apollo/react-hooks";
 import ApolloClient from "apollo-boost";
 import React, { Component } from "react";
+import { Button, Container, Row } from "react-bootstrap";
 import { BrowserRouter as Router, Link, Route } from "react-router-dom";
 import CategoryByNameView from "./views/CategoryByNameView";
 import CategoryListView from "./views/CategoryListView";
@@ -18,25 +19,27 @@ class App extends Component {
     return (
       <ApolloProvider client={client}>
         <Router>
-          <div>
-            <ul>
-              <li>
-                <Link to="/ingredients">Ingredients</Link>
-              </li>
-              <li>
-                <Link to="/categories">Categories</Link>
-              </li>
-              <li>
-                <Link to="/categoryByName">CategoryByName</Link>
-              </li>
-            </ul>
+          <Container>
+            <Row>
+              <Link to="/ingredients">
+                <Button variant="link">Ingredients</Button>
+              </Link>
+              <Link to="/categories">
+                <Button variant="link">Categories</Button>
+              </Link>
+              <Link to="/categoryByName">
+                <Button variant="link">Category By Name</Button>
+              </Link>
+            </Row>
+            <br />
             <Route exact path="/ingredients" component={IngredientListView} />
             <Route exact path="/categories" component={CategoryListView} />
             <Route
+              exact
               path="/categoryByName/:name/"
               component={CategoryByNameView}
             />
-          </div>
+          </Container>
         </Router>
       </ApolloProvider>
     );
