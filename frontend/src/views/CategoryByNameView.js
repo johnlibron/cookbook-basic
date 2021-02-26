@@ -33,7 +33,7 @@ class CategoryByNameView extends Component {
             <Table striped bordered hover>
               <thead>
                 <tr>
-                  <th>#</th>
+                  <th>Category ID</th>
                   <th>Name</th>
                 </tr>
               </thead>

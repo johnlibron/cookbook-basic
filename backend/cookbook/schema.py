@@ -3,6 +3,7 @@ from graphene_django import DjangoObjectType
 
 from cookbook.ingredients.models import Category, Ingredient
 
+
 class CategoryType(DjangoObjectType):
     class Meta:
         model = Category

@@ -2,6 +2,7 @@ import gql from "graphql-tag";
 import React, { Component } from "react";
 import { graphql } from "react-apollo";
 import { Row, Table } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const QUERY_ALL_CATEGORIES = gql`
   query {
@@ -36,7 +37,9 @@ class CategoryListView extends Component {
             {data.allCategories.map((item) => (
               <tr key={item.id}>
                 <td>{item.id}</td>
-                <td>{item.name}</td>
+                <td>
+                  <Link to={"/categoryByName/" + item.name}>{item.name}</Link>
+                </td>
                 <td>
                   {item.ingredients.map((ingredient, index) => (
                     <span>{(index ? ", " : "") + ingredient.name}</span>

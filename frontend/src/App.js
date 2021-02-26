@@ -21,14 +21,14 @@ class App extends Component {
         <Router>
           <Container>
             <Row>
+              <h1>Cookbook - Basic</h1>
+            </Row>
+            <Row>
               <Link to="/ingredients">
                 <Button variant="link">Ingredients</Button>
               </Link>
               <Link to="/categories">
                 <Button variant="link">Categories</Button>
-              </Link>
-              <Link to="/categoryByName">
-                <Button variant="link">Category By Name</Button>
               </Link>
             </Row>
             <br />
